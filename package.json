@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon server/express.js",
     "start": "webpack -d --watch",
-    "db": "node db/mongo.js"
+    "db": "node ./db/mongo.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/rpt16Quarks/alexFEC#readme",
   "devDependencies": {
-    "nodemon": "^1.19.3"
+    "nodemon": "^1.19.3",
+    "styled-components": "^4.4.0"
   },
   "dependencies": {
     "@babel/core": "^7.6.2",
