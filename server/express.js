@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const mongo = require('../db/mongo');
 
 let dist = path.resolve('client', 'dist');
 
@@ -14,6 +15,6 @@ app.post('/', (req, res) => {
   res.status(200);
 })
 
-app.listen(1212 || process.env.PORT, () => {
-  console.log('On port 1212');
+app.listen(3001 || process.env.PORT, () => {
+  console.log('On port 3001');
 });

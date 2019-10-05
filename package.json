@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon server/express.js",
-    "start": "webpack -d --watch"
+    "start": "webpack -d --watch",
+    "db": "node db/mongo.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
     "@babel/core": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
+    "aws-sdk": "^2.542.0",
     "babel-loader": "^8.0.6",
     "express": "^4.17.1",
     "faker": "^4.1.0",
