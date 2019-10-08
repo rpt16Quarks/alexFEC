@@ -15,7 +15,7 @@ let repoSchema = mongoose.Schema({
 let repo = mongoose.model('repos', repoSchema);
 
 
-let save = () => {
+let save = (cb) => {
   let records = fakerAPI.fakerData();
   records.then(r => {
     repo.deleteMany((err, res) => {
@@ -24,8 +24,7 @@ let save = () => {
         repo.insertMany(r, (err, result) => {
           if (err) throw err;
           else {
-            console.log('result~~~~~:',result);
-            //cb(result);
+            cb(result);
           }
         })
       }
@@ -33,14 +32,17 @@ let save = () => {
   });
 }
 
-let retrieve = (cb) => {
-  repo.find((err, res) => {
-    if (err) throw err;
-    else {
-      cb(res);
-    }
+let retrieve = () => {
+  return new Promise((resolve, reject) => {
+    repo.find((err, res) => {
+      if (err) reject(err);
+      else {
+        resolve(res);
+      }
+    })
   })
 }
+
 
 
 module.exports = {

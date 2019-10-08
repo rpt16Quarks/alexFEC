@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --detectOpenHandles",
     "server": "nodemon server/express.js",
     "start": "webpack -d --watch",
     "db": "node ./db/mongo.js"
@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/rpt16Quarks/alexFEC#readme",
   "devDependencies": {
+    "@shelf/jest-mongodb": "^1.1.1",
+    "jest": "^24.9.0",
     "nodemon": "^1.19.3",
     "styled-components": "^4.4.0"
   },
