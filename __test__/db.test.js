@@ -2,6 +2,7 @@ const aws = require('../db/aws.js');
 const faker = require('../db/faker.js');
 const mongo = require('../db/mongo.js');
 const {MongoClient} = require('mongodb');
+const mongoose = require('mongoose');
 
 
 describe('aws.js', () => {
@@ -41,36 +42,29 @@ describe('faker.js', () => {
 
 describe('mongo.js', () => {
 
-    let connection;
-    let db;
+  mongoose.connect('mongodb://localhost/fecRepo', {useNewUrlParser: true});
+  let db = mongo.db;
+  let repo = mongo.repo;
 
-    beforeAll(async () => {
-      connection = await MongoClient.connect(global.__MONGO_URI__, {useNewUrlParser: true})
-      db = await connection.db(global.__MONGO_DB_NAME__);
+    //Will have to refactor this.
+    it ('mongo.retrieve should find records that were inserted', async () => {
+      await mongo.del();
+      await mongo.insertOne();
+      return await mongo.retrieve()
+      .then(res => {
+        expect(res.length === 2).toBe(true);
+        mongo.del()
+      });
     })
 
-    afterAll(async () => {
-      await connection.close();
-    })
 
     it('mongo.save should save 5 records',async () => {
       //const repo = db.collection('repo');
       return mongo.save(async result => {
-        expect(result.length === 5).toBe(true);
+        await repo.find({}, (err, res) => {
+          expect(JSON.stringify(result) == JSON.stringify(res)).toBe(true);
+        })
       })
-    })
-
-    //Will have to refactor this.
-    it ('mongo.retrieve should find records that were inserted', async () => {
-      const repo = db.collection('users');
-      const mock = {'id':'1','image': 'hello'}
-      await repo.insertOne(mock);
-      await repo.deleteMany()
-      await mongo.retrieve()
-      .then(res => {
-        expect(res.length == 5).toBe(true);
-      })
-
     })
 
 })

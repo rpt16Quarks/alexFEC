@@ -34,7 +34,7 @@ let save = (cb) => {
 
 let retrieve = () => {
   return new Promise((resolve, reject) => {
-    repo.find((err, res) => {
+    repo.find({}, (err, res) => {
       if (err) reject(err);
       else {
         resolve(res);
@@ -44,10 +44,36 @@ let retrieve = () => {
 }
 
 
+let del = () => {
+  return new Promise((resolve, reject) => {
+    repo.deleteMany((err, res) => {
+      if (err) reject(err);
+      else {
+        resolve(res);
+      }
+    })
+  });
+}
+
+let insertOne = () => {
+  return new Promise((resolve, reject) => {
+    repo.insertMany([{'id':'1'}, {'id': '2'}], (err, res) => {
+      if (err) reject(err);
+      else {
+        resolve(res);
+      }
+    })
+  })
+}
+
 
 module.exports = {
   save,
-  retrieve
+  retrieve,
+  del,
+  insertOne,
+  db,
+  repo
 }
 
 
