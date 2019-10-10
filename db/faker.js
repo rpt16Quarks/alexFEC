@@ -45,9 +45,6 @@ let fakerData = () => {
   return xfunc()
 }
 
-
-
-
 module.exports = {
   fakerData,
 };
