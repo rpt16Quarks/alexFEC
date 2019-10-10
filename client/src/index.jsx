@@ -11,8 +11,22 @@ class App extends React.Component {
     this.veryFetching = this.veryFetching.bind(this);
   }
 
-  componentDidMount(){
-    this.veryFetching();
+  componentWillMount(){
+    let prodId = window.location.search.split("=")[1];
+    if (prodId){
+      console.log("prodId: ",prodId);
+      fetch(`/suggested?prod_id=${prodId}`)
+      .then(r => r.json())
+      .then(d => {
+        this.setState({
+          items: [d]
+        })
+      })
+    } else {
+      this.veryFetching();
+    }
+
+
   }
 
   veryFetching(){
