@@ -1,21 +1,42 @@
 const express = require('express');
 const path = require('path');
-const mongo = require('../db/mongo');
+const {save, retrieve, findOne} = require('../db/mongo');
+const axios = require('axios');
+const bodyParser = require('body-parser');
 
 let dist = path.resolve('client', 'dist');
 
+
 let app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(express.static(dist))
 
 app.get('/data', (req, res) => {
-  mongo.retrieve(results => {
-    res.send(results).status(200);
+  save(ans => {
+    retrieve().then(resu => {
+      res.send(resu).status(200);
+    })
   })
 })
 
-app.post('/', (req, res) => {
+app.get('/suggested', (req, res) => {
+  let prodId = req.query.prod_id
+  if (prodId == 1 && prodId != undefined){
+    findOne()
+      .then(r => res.send(r))
+      .catch(err => res.status(400))
+  } else if (prodId != 1 && prodId != undefined) {
+    retrieve().then(r => {
+      let randPicker = Math.floor(Math.random() * r.length);
+      res.status(200).send(r[randPicker])
 
+    })
+  } else {
+    res.status(400);
+  }
 })
+
 
 app.listen(3001 || process.env.PORT, () => {
   console.log('On port 3001');

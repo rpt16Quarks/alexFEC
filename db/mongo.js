@@ -32,13 +32,46 @@ let save = (cb) => {
   });
 }
 
+let findOne = () => {
+  return new Promise((resolve, reject) => {
+    repo.findOne({"productTitle": "Chewbacca w/ Sound Star Wars 15\" Plush Toy"}, (err, res) => {
+      resolve(res);
+    })
+  })
+}
 
-let retrieve = (cb) => {
-  repo.find((err, res) => {
-    if (err) throw err;
-    else {
-      cb(res);
-    }
+
+let retrieve = () => {
+  return new Promise((resolve, reject) => {
+    repo.find({}, (err, res) => {
+      if (err) reject(err);
+      else {
+        resolve(res);
+      }
+    })
+  })
+}
+
+
+let del = () => {
+  return new Promise((resolve, reject) => {
+    repo.deleteMany((err, res) => {
+      if (err) reject(err);
+      else {
+        resolve(res);
+      }
+    })
+  });
+}
+
+let insertOne = () => {
+  return new Promise((resolve, reject) => {
+    repo.insertMany([{'id':'1'}, {'id': '2'}], (err, res) => {
+      if (err) reject(err);
+      else {
+        resolve(res);
+      }
+    })
   })
 }
 
@@ -46,7 +79,12 @@ let retrieve = (cb) => {
 
 module.exports = {
   save,
-  retrieve
+  retrieve,
+  del,
+  insertOne,
+  db,
+  repo,
+  findOne
 }
 
 

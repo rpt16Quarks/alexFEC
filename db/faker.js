@@ -21,9 +21,12 @@ let objMap = [
   'https://fecquarkalex.s3-us-west-1.amazonaws.com/watch9.jpg'
 ]
 
+//Chewbacca plush toy = productID 1;
+
 
 let fakerData = () => {
   let array = [];
+  array.push({"image":"https://i.ebayimg.com/thumbs/images/g/mXcAAOSwcLxYMP5g/s-l200.jpg", "productTitle":"Chewbacca w/ Sound Star Wars 15\" Plush Toy","price":20.11,"shippingCost":14.65})
   let xfunc = () => {
     return new Promise((resolve, reject) => {
       awsURL.then(r => {
