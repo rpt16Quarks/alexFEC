@@ -30,7 +30,7 @@ let fakerData = () => {
   let xfunc = () => {
     return new Promise((resolve, reject) => {
       awsURL.then(r => {
-        for (let i=0; i<5; i++) {
+        for (let i=0; i<9; i++) {
           let x = r[Math.floor(Math.random() * 15)]
           const productTitle = faker.commerce.productName();
           const price = Number(faker.commerce.price());
