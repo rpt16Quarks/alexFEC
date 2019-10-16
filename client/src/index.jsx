@@ -16,17 +16,27 @@ export class App extends React.Component {
 
   componentWillMount(){
     let prodId = window.location.search.split("=")[1];
+    // if (prodId == 1){
+    //   console.log("prodId: ",prodId);
+    //   fetch(`/suggested?prod_id=${prodId}`)
+    //   .then(r => r.json())
+    //   .then(d => {
+    //     let x = d.slice(0,5);
+    //     let y = d.slice(5,10);
+    //     this.setState({
+    //       item1: [x],
+    //       item2: [y]
+    //     })
+    //   })
     if (prodId == 1){
       console.log("prodId: ",prodId);
       fetch(`/suggested?prod_id=${prodId}`)
       .then(r => r.json())
       .then(d => {
-        let x = d.slice(0,5);
-        let y = d.slice(5,10);
         this.setState({
-          item1: [x],
-          item2: [y]
-        })
+          item1: [d[0]],
+          item2: [d[1]]
+        });
       })
     } else {
       this.veryFetching();
@@ -34,9 +44,10 @@ export class App extends React.Component {
   }
 
   veryFetching(){
-    fetch('/data')
+    fetch('/suggested')
     .then(r => r.json())
     .then(d => {
+      console.log(d);
       let x = d.slice(0,5);
       let y = d.slice(5,10);
       this.setState({
@@ -44,6 +55,16 @@ export class App extends React.Component {
         item2: y
       })
     })
+    // fetch('/data')
+    // .then(r => r.json())
+    // .then(d => {
+    //   let x = d.slice(0,5);
+    //   let y = d.slice(5,10);
+    //   this.setState({
+    //     item1: x,
+    //     item2: y
+    //   })
+    // })
   }
 
   switchUp(e){
