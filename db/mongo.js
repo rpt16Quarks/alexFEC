@@ -33,10 +33,17 @@ let save = (cb) => {
 }
 
 let findOne = () => {
+  // return new Promise((resolve, reject) => {
+  //   repo.findOne({"productTitle": "Chewbacca w/ Sound Star Wars 15\" Plush Toy"}, (err, res) => {
+  //     resolve(res);
+  //   })
+  // })
   return new Promise((resolve, reject) => {
-    repo.findOne({"productTitle": "Chewbacca w/ Sound Star Wars 15\" Plush Toy"}, (err, res) => {
-      resolve(res);
-    })
+    repo.findOne({"productTitle": "Chewbacca w/ Sound Star Wars 15\" Plush Toy"})
+    .then(r => {
+      repo.findOne({"productTitle": "Chewbacca Star Wars Talking Stuffed Animal Plush Wookie Doll 8\" Inches"})
+      .then(f => resolve([r,f]))
+    });
   })
 }
 

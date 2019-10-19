@@ -12,28 +12,41 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(dist))
 
-app.get('/data', (req, res) => {
-  save(ans => {
-    retrieve().then(resu => {
-      res.send(resu).status(200);
-    })
-  })
-})
+// app.get('/data', (req, res) => {
+//   save(ans => {
+//     retrieve().then(resu => {
+//       res.send(resu).status(200);
+//     })
+//   })
+// })
 
 app.get('/suggested', (req, res) => {
   let prodId = req.query.prod_id
+  // if (prodId == 1 && prodId != undefined){
+  //   findOne()
+  //     .then(r => res.send(r))
+  //     .catch(err => res.status(400))
+  // } else if (prodId != 1 && prodId != undefined) {
+  //   retrieve().then(r => {
+  //     let randPicker = Math.floor(Math.random() * r.length);
+  //     res.status(200).send(r[randPicker])
+
+  //   })
   if (prodId == 1 && prodId != undefined){
     findOne()
-      .then(r => res.send(r))
+      .then(r => {
+        res.status(200).send(r);
+      })
       .catch(err => res.status(400))
-  } else if (prodId != 1 && prodId != undefined) {
-    retrieve().then(r => {
-      let randPicker = Math.floor(Math.random() * r.length);
-      res.status(200).send(r[randPicker])
-
+  } else if (prodId != 1) {
+    //If you resave it then it'll randomize positions of products each time
+    save(ans => {
+      retrieve().then(resu => {
+        res.send(resu).status(200);
+      })
     })
   } else {
-    res.status(400);
+    res.status(400).send('Try Again')
   }
 })
 
