@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon server/express.js",
     "start": "webpack -d --watch",
-    "db": "node db/mongo.js"
+    "db": "mongod && node db/mongo.js"
   },
   "repository": {
     "type": "git",
