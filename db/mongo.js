@@ -1,11 +1,14 @@
 const mongoose = require('mongoose');
 const fakerAPI = require('./faker')
-// mongoose.connect('mongodb://localhost/fecRepo', {useNewUrlParser: true});
-mongoose.connect('mongodb://mongo:27017/fecRepo', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost/fecRepo', {useNewUrlParser: true});
+//Need below for docker.
+//mongoose.connect('mongodb://mongo:27017/fecRepo', {useNewUrlParser: true})
+//.catch(err => console.error(err));
 
 
 const db = mongoose.connection;
 db.once('open', () => {console.log('open!')})
+
 
 let repoSchema = mongoose.Schema({
   image: String,

@@ -1,0 +1,17 @@
+version: "3"
+services:
+  serverservice:
+    container_name: servercontainer
+    restart: always
+    build: ./
+    ports:
+      - "80:3001"
+    volumes:
+      - .:/alexFEC
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"

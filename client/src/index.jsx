@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import "@ebay/skin/dist/carousel/ds4/carousel.css"
 
 export class App extends React.Component {
   constructor(props){
@@ -100,16 +101,39 @@ export class App extends React.Component {
       z-index: 1;
       top: 24%;
     `
+    const IndividualItems = styled.li`
+      list-style: none;
+      height: 20%;
+      width: 20%;
+      font-size: 15px;
+    `
+
+    // const ButtonL = styled.button `
+    // background-color: #fff;
+    // border: 1px solid #333;
+    // font-size: 18px;
+    // padding: 0;
+    // background-color;
+    // position: absolute;
+    // top: 50%;
+    // -webkit-transform: translateY(-50%);
+    // transform: translateY(-50%);
+    // -webkit-transition: opacity 0.45s ease-in-out;
+    // transition: opacity 0.45s ease-in-out;
+    // z-index: 1;
+    // height: 72px;
+    // width: 28px;
+    // `
+
     const ButtonR = styled.button`
       content: "";
       background-image: url(https://ir.ebaystatic.com/f/8ad5a0773b1335cc3ceb5d966215af2.svg);
+      background-position: -49px 8px;
       display: flex;
-      //justify-content: flex-end;
-      //margin-left: 9px;
+      justify-content: flex-end;
       width: 15px;
       height: 35px;
       right: -2%;
-      background-position: -49px 8px;
       opacity: .4;
       background-color: #fff;
       border: 1px solid rgba(0,0,0,0.3);
@@ -130,6 +154,8 @@ export class App extends React.Component {
       width: 200px;
     `
     const Container = styled.div`
+      border: 1px black;
+      font-family: "Helvetica neue",Helvetica,Verdana,Sans-serif;
     `
 
     return (
@@ -138,11 +164,12 @@ export class App extends React.Component {
           <p>Related Sponsored Content 1/2</p>
           :<p>Related Sponsored Content 2/2</p>
         }
+        <p>Feedback on our suggestions</p>
         <ButtonL onClick={this.switchUp}/>
         <AllItems>
             {this.state.item1.map(item => {
               return (
-                <li class="individualItems">
+                <IndividualItems>
                   <Photos src={item.image} alt="watch"/>
                   <br></br>{item.productTitle}
                   <br></br>${item.price}
@@ -150,11 +177,41 @@ export class App extends React.Component {
                     'Free Shipping'
                     :item.shippingCost
                   }
-                </li>
+                </IndividualItems>
                 )})}
+            <ButtonR onClick={this.switchUp}/>
+
           </AllItems>
-          <ButtonR onClick={this.switchUp}/>
       </Container>
+    // <Container>
+    //   <div className="carousel">
+    //   <div className="carousel__container">
+    //       {/* <button className="carousel__control carousel__control--prev" aria-label="Previous Slide - Top Products">
+    //           <svg aria-hidden="true" className="icon icon--chevron-left-small" focusable="false" >
+    //               <use xlink="true" href="#icon-chevron-left"></use>
+    //           </svg>
+    //       </button> */}
+    //       <ButtonL />
+    //       {this.state.item1.map(item => {
+    //           return (
+    //             <li className="carousel__list">
+    //               <Photos src={item.image} alt="watch"/>
+    //               <br></br>{item.productTitle}
+    //               <br></br>${item.price}
+    //               <br></br>{item.shippingCost == 0 ?
+    //                 'Free Shipping'
+    //                 :item.shippingCost
+    //               }
+    //             </li>
+    //        )})}
+    //       <button className="carousel__control carousel__control--next" aria-label="Next Slide - Top Products">
+    //           <svg aria-hidden="true" className="icon icon--chevron-right-small" focusable="false">
+    //               <use xlink="true" href="#icon-chevron-right"></use>
+    //           </svg>
+    //       </button>
+    //   </div>
+    // </div>
+    // </Container>
     )
   }
 }
