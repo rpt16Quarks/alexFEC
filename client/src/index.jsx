@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import "@ebay/skin/dist/carousel/ds4/carousel.css"
 
 export class App extends React.Component {
   constructor(props){

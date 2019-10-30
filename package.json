@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "server": "nodemon server/express.js",
     "start": "webpack -d --watch",
     "db": "mongod && node db/mongo.js"
