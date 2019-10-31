@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const {save, retrieve, findOne} = require('../db/mongo');
-const axios = require('axios');
 const bodyParser = require('body-parser');
 
 let dist = path.resolve('client', 'dist');
@@ -12,13 +11,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(dist))
 
-// app.get('/data', (req, res) => {
-//   save(ans => {
-//     retrieve().then(resu => {
-//       res.send(resu).status(200);
-//     })
-//   })
-// })
+app.get('/data', (req, res) => {
+  save(ans => {
+    retrieve().then(resu => {
+      res.send(resu).status(200);
+    })
+  })
+})
 
 app.get('/suggested', (req, res) => {
   let prodId = req.query.prod_id

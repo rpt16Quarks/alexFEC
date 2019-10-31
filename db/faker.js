@@ -51,7 +51,3 @@ let fakerData = () => {
 module.exports = {
   fakerData,
 };
-
-
-
-
