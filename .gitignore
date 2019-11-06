@@ -1,6 +1,3 @@
 node_modules
 config.json
-<<<<<<< HEAD
-=======
 client/dist/bundle.js
->>>>>>> 5d681c2c57ff3de56cc67416248d22e48814a18b

@@ -1,29 +1,6 @@
 const faker = require('faker/locale/en_US');
 const awsURL = require('./aws');
 
-
-//if 100x async func is too slow, can use these instead & randomize it instead.
-let objMap = [
-  'https://fecquarkalex.s3-us-west-1.amazonaws.com/watch1.jpg',
-  'https://fecquarkalex.s3-us-west-1.amazonaws.com/watch10.jpg',
-  'https://fecquarkalex.s3-us-west-1.amazonaws.com/watch2.jpg',
-  'https://fecquarkalex.s3-us-west-1.amazonaws.com/watch21.jpg',
-  'https://fecquarkalex.s3-us-west-1.amazonaws.com/watch22.jpg',
-  'https://fecquarkalex.s3-us-west-1.amazonaws.com/watch23.jpg',
-  'https://fecquarkalex.s3-us-west-1.amazonaws.com/watch24.jpg',
-  'https://fecquarkalex.s3-us-west-1.amazonaws.com/watch3.jpg',
-  'https://fecquarkalex.s3-us-west-1.amazonaws.com/watch4.jpg',
-  'https://fecquarkalex.s3-us-west-1.amazonaws.com/watch5.jpg',
-  'https://fecquarkalex.s3-us-west-1.amazonaws.com/watch6.jpg',
-  'https://fecquarkalex.s3-us-west-1.amazonaws.com/watch66.jpg',
-  'https://fecquarkalex.s3-us-west-1.amazonaws.com/watch7.jpg',
-  'https://fecquarkalex.s3-us-west-1.amazonaws.com/watch8.jpg',
-  'https://fecquarkalex.s3-us-west-1.amazonaws.com/watch9.jpg'
-]
-
-//Chewbacca plush toy = productID 1;
-
-
 let fakerData = () => {
   let array = [];
   array.push(

@@ -21,16 +21,6 @@ app.get('/data', (req, res) => {
 
 app.get('/suggested', (req, res) => {
   let prodId = req.query.prod_id
-  // if (prodId == 1 && prodId != undefined){
-  //   findOne()
-  //     .then(r => res.send(r))
-  //     .catch(err => res.status(400))
-  // } else if (prodId != 1 && prodId != undefined) {
-  //   retrieve().then(r => {
-  //     let randPicker = Math.floor(Math.random() * r.length);
-  //     res.status(200).send(r[randPicker])
-
-  //   })
   if (prodId == 1 && prodId != undefined){
     findOne()
       .then(r => {
