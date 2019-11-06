@@ -15,19 +15,8 @@ export class App extends React.Component {
   }
 
   componentWillMount(){
+    console.log('componentWillMount')
     let prodId = window.location.search.split("=")[1];
-    // if (prodId == 1){
-    //   console.log("prodId: ",prodId);
-    //   fetch(`/suggested?prod_id=${prodId}`)
-    //   .then(r => r.json())
-    //   .then(d => {
-    //     let x = d.slice(0,5);
-    //     let y = d.slice(5,10);
-    //     this.setState({
-    //       item1: [x],
-    //       item2: [y]
-    //     })
-    //   })
     if (prodId == 1){
       console.log("prodId: ",prodId);
       fetch(`/suggested?prod_id=${prodId}`)
@@ -44,6 +33,7 @@ export class App extends React.Component {
   }
 
   veryFetching(){
+    console.log('fetching')
     fetch('/suggested')
     .then(r => r.json())
     .then(d => {
@@ -55,16 +45,6 @@ export class App extends React.Component {
         item2: y
       })
     })
-    // fetch('/data')
-    // .then(r => r.json())
-    // .then(d => {
-    //   let x = d.slice(0,5);
-    //   let y = d.slice(5,10);
-    //   this.setState({
-    //     item1: x,
-    //     item2: y
-    //   })
-    // })
   }
 
   switchUp(e){
@@ -82,6 +62,7 @@ export class App extends React.Component {
 
 
 render(){
+  console.log('render')
   const Background = styled.div`
     background: rgb(245, 245, 245);
     padding: 10px;
@@ -197,43 +178,40 @@ render(){
     font-size: 80%;
     margin: 1px;
   `
-  const Content = styled.div`
-    padding: 15px;
-    display: grid;
-  `
 
+    return (
+      <Background>
+        <Container>
+          <Header>
+            {this.state.firstPage ?
+                <p>Related Sponsored Content 1/2</p>
+                :<p>Related Sponsored Content 2/2</p>
+              }
+            <Feedback>Feedback on our suggestions</Feedback>
+          </Header>
+              <ButtonL onClick={this.switchUp}/>
+                <AllItems>
+                  {this.state.item1.map(item => {
+                    return (
+                      <IndividualItems>
+                        <Photos src={item.image} alt="watch"/>
+                        <br></br><Description>{item.productTitle}</Description>
+                        <Price>${item.price}</Price>
+                        <Shipping>
+                          {item.shippingCost == 0 ?
+                            'Free Shipping'
+                            :`+ $${item.shippingCost}`}
+                        </Shipping>
+                      </IndividualItems>
+                      )})}
+                  <ButtonR onClick={this.switchUp}/>
+                </AllItems>
+          </Container>
+        </Background>
+      )
 
-  return (
-    <Background>
-      <Container>
-        <Header>
-          {this.state.firstPage ?
-              <p>Related Sponsored Content 1/2</p>
-              :<p>Related Sponsored Content 2/2</p>
-            }
-          <Feedback>Feedback on our suggestions</Feedback>
-        </Header>
-            <ButtonL onClick={this.switchUp}/>
-              <AllItems>
-                {this.state.item1.map(item => {
-                  return (
-                    <IndividualItems>
-                      <Photos src={item.image} alt="watch"/>
-                      <br></br><Description>{item.productTitle}</Description>
-                      <Price>${item.price}</Price>
-                      <Shipping>
-                        {item.shippingCost == 0 ?
-                          'Free Shipping'
-                          :`+ $${item.shippingCost}`}
-                      </Shipping>
-                    </IndividualItems>
-                    )})}
-                 <ButtonR onClick={this.switchUp}/>
-              </AllItems>
-        </Container>
-      </Background>
-  )
+  }
 }
-}
+
 
 ReactDOM.render(<App/>, document.getElementById('root'));

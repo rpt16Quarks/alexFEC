@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const fakerAPI = require('./faker')
-mongoose.connect('mongodb://localhost/fecRepo', {useNewUrlParser: true});
+//mongoose.connect('mongodb://localhost/fecRepo', {useNewUrlParser: true});
 //Need below for docker.
-//mongoose.connect('mongodb://mongo:27017/fecRepo', {useNewUrlParser: true})
-//.catch(err => console.error(err));
+mongoose.connect('mongodb://ec2-54-215-211-187.us-west-1.compute.amazonaws.com:27017/', {useNewUrlParser: true})
+.catch(err => console.error(err));
 
 
 const db = mongoose.connection;
@@ -38,11 +38,6 @@ let save = (cb) => {
 }
 
 let findOne = () => {
-  // return new Promise((resolve, reject) => {
-  //   repo.findOne({"productTitle": "Chewbacca w/ Sound Star Wars 15\" Plush Toy"}, (err, res) => {
-  //     resolve(res);
-  //   })
-  // })
   return new Promise((resolve, reject) => {
     repo.findOne({"productTitle": "Chewbacca w/ Sound Star Wars 15\" Plush Toy"})
     .then(r => {
@@ -65,35 +60,13 @@ let retrieve = () => {
 }
 
 
-let del = () => {
-  return new Promise((resolve, reject) => {
-    repo.deleteMany((err, res) => {
-      if (err) reject(err);
-      else {
-        resolve(res);
-      }
-    })
-  });
-}
 
-let insertOne = () => {
-  return new Promise((resolve, reject) => {
-    repo.insertMany([{'id':'1'}, {'id': '2'}], (err, res) => {
-      if (err) reject(err);
-      else {
-        resolve(res);
-      }
-    })
-  })
-}
 
 
 
 module.exports = {
   save,
   retrieve,
-  del,
-  insertOne,
   db,
   repo,
   findOne
