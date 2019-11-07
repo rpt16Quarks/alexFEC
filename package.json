@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "server": "nodemon server/express.js",
-    "start": "webpack -d --watch",
+    "start": "webpack --watch",
     "db": "mongod && node db/mongo.js"
   },
   "repository": {
@@ -52,6 +52,7 @@
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "styled-components": "^4.4.0",
+    "terser-webpack-plugin": "^2.2.1",
     "webpack": "^4.41.0",
     "webpack-cli": "^3.3.9"
   }
