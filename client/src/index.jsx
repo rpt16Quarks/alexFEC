@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-curly-newline */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable arrow-body-style */
@@ -83,6 +84,7 @@ export default class App extends React.Component {
       background-color: #fff;
       border: 1px solid rgba(0,0,0,0.3);
       border-radius: 35px;
+      margin-top: 5%;
       ${this.state.firstPage} &:hover {
         opacity: 1;
       }
@@ -97,7 +99,7 @@ export default class App extends React.Component {
       white-space: normal;
       word-break: break-word;
       hyphens: auto;
-      margin: 3px;
+      margin: 4px;
       font-weight: normal;
       font-size: 100%;
     `;
@@ -109,7 +111,7 @@ export default class App extends React.Component {
       &:hover {
         border: 1px solid rgb(153, 153, 153);
       }
-      ${Description}&:hover {
+      ${Description}:hover {
         text-decoration: underline;
       }
     `;
@@ -121,15 +123,13 @@ export default class App extends React.Component {
       justify-content: flex-end;
       width: 15px;
       height: 35px;
-      //right: -2%;
       opacity: .4;
       background-color: #fff;
       border: 1px solid rgba(0,0,0,0.3);
       border-radius: 35px;
       bottom: 20px;
-      //z-index: 1;
+      margin-top: 5%;
       top: 24%;
-      //padding: 4px, 0;
 
       ${!this.state.firstPage} &:hover {
         opacity: 1;
@@ -144,6 +144,9 @@ export default class App extends React.Component {
       flex-direction: row;
       height: 70%;
       width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 0px;
     `;
     const Photos = styled.img`
       height: 175px;
@@ -154,40 +157,49 @@ export default class App extends React.Component {
     `;
     const Container = styled.div`
       border: 1px rgb(204, 204, 204) solid;
-      font-family: Skin-market-sans !important;
+      font-family: "Helvetica neue",Helvetica,Verdana,Sans-serif;
       background: rgb(255, 255, 255);
+    `;
+    const Price = styled.p`
+      font-size: 17px;
+      font-weight: 500;
+      margin: 4px;
+    `;
+    const Shipping = styled.p`
+      color: #767676
+      font-weight: normal;
+      font-size: 80%;
+      margin: 4px;
     `;
     const Feedback = styled.p`
       display: flex;
       justify-content: flex-end;
       font-size: 11px;
       font-weight: 400;
-      margin: 4px 0 0 0;
-    `;
-    const Price = styled.p`
-      font-size: 17px;
-      font-weight: 500;
-      margin: 5px 0 0 0;
-    `;
-    const Shipping = styled.p`
-      color: #767676
-      font-weight: normal;
-      font-size: 80%;
-      margin: 1px;
+      margin-top: 16px;
+      float: right;
+      :hover{
+        text-decoration: underline;
+      }
     `;
     const RSC = styled.p`
       padding-left: 1%;
+      margin-bottom: 0px;
+      float: left;
     `;
-
+    const Header = styled.div`
+      overflow: hidden;
+    `;
     return (
       <Background>
         <Container>
-          <div>
+          <Header>
             {this.state.firstPage
               ? <RSC>Related Sponsored Content 1/2</RSC>
-              : <RSC>Related Sponsored Content 2/2</RSC> }
+              : <RSC>Related Sponsored Content 2/2</RSC>
+            }
             <Feedback>Feedback on our suggestions</Feedback>
-          </div>
+          </Header>
           <AllItems>
             <ButtonL onClick={this.switchUp} />
             {this.state.item1.map((item) => {
